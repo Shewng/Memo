@@ -35,10 +35,7 @@ const cancelButton = document.querySelector(".cancel-button");
 // adding event listeners
 newMemoButton.addEventListener("click", openMenu);
 closeMenuButton.addEventListener("click", showWarning);
-imageInput.addEventListener("change", (e) => {
-  loadImageFile(e);
-  e.preventDefault;
-});
+imageInput.addEventListener("change", (e) => loadImageFile(e));
 closeImageButton.addEventListener("click", clearImage);
 createDescription.addEventListener("keyup", updateData);
 postMemoButton.addEventListener("click", postNewMemo);
@@ -122,14 +119,10 @@ function createPostHasData() {
  */
 function loadImageFile(event) {
   // display image
-  //(window.URL ? URL : webkitURL).createObjectURL(evt.data);
-  selectedImage.src = (window.URL ? URL : webkitURL).createObjectURL(
-    event.target.files[0]
-  );
+  selectedImage.src = URL.createObjectURL(event.target.files[0]);
   selectedImage.onload = () => {
     URL.revokeObjectURL(selectedImage.src);
   };
-
   updateData();
 }
 
@@ -166,12 +159,10 @@ function postNewMemo() {
   post.setAttribute("class", "post");
 
   // make the image
-  var image = selectedImage;
-
+  var image = selectedImage.getAttribute("src");
   if (image) {
     const postImage = document.createElement("img");
-    postImage.src = image.src;
-    console.log("src: " + image.src);
+    postImage.setAttribute("src", image);
     postImage.setAttribute("class", "post-image");
     post.appendChild(postImage); // append
   }
