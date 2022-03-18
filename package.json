@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "css": "node-sass --include-path scss style.scss style.css",
+    "watch": "nodemon -e scss -x npm run css"
+  },
+  "name": "memo",
+  "version": "1.0.0",
+  "main": "script.js",
+ 
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,507 @@
+// Flexbox mixin to reduce constant "display: flex" containers
+@mixin flexbox($direction, $justify, $alignItems) {
+  display: flex;
+  @if $direction == column {
+    flex-direction: column;
+  } @else {
+    flex-direction: row;
+  }
+
+  @if $justify == center {
+    justify-content: center;
+  } @else if $justify == space-around {
+    justify-content: space-around;
+  } @else if $justify == space-between {
+    justify-content: space-between;
+  } @else if $justify == space-evenly {
+    justify-content: space-evenly;
+  } @else if $justify == flex-start {
+    justify-content: flex-end;
+  } @else if $justify == flex-end {
+    justify-content: flex-end;
+  }
+
+  @if $alignItems == center {
+    align-items: center;
+  } @else if $alignItems == flex-start {
+    align-items: flex-end;
+  } @else if $alignItems == flex-end {
+    align-items: flex-end;
+  }
+}
+
+// variables
+$primary-color: #40025d;
+$primary-accent: #f1a003;
+$primary-accent-hover: #ffc041;
+$primary-font: #303030;
+$lato: "Lato", sans-serif;
+$passion: "Passion One", cursive;
+
+* {
+  scrollbar-width: none;
+}
+
+body {
+  margin: 0;
+  background-color: #c4c4c4;
+  font-family: $lato;
+  margin-bottom: 45px; //for fixed footer
+
+  &.noscroll {
+    overflow: hidden;
+  }
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  color: $primary-accent;
+  font-family: $passion;
+  font-weight: lighter;
+}
+
+p {
+  color: $primary-font;
+  margin: 0;
+  font-weight: 300;
+}
+
+hr {
+  border: 1px solid #e5e5e5;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+/******* STATIC NAV *******/
+
+#nav {
+  @include flexbox(row, space-between, center);
+
+  position: relative;
+  transition: opacity 0.1s ease;
+
+  background-color: $primary-color;
+  border-bottom: 3px solid $primary-accent;
+
+  padding: 0.75em 1.5em 0 1.5em;
+  height: 65px;
+  width: auto;
+
+  .logo {
+    width: 102px;
+    height: 26px;
+  }
+}
+
+/******* STATIC NAV *******/
+
+footer {
+  @include flexbox(column, null, center);
+
+  background-color: $primary-color;
+  border-top: 3px solid $primary-accent;
+  margin: 0 auto;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 40px;
+  width: 100%;
+
+  .button-container {
+    @include flexbox(column, null, center);
+
+    position: relative;
+    bottom: 2em;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(3px);
+    }
+
+    .create-memo-button {
+      width: 40px;
+      height: 40px;
+    }
+
+    .post-header {
+      margin-top: 0.25em;
+      font-family: $passion;
+      color: $primary-accent;
+      font-size: 1.15em;
+    }
+  }
+}
+
+/******* MAIN SOCIAL MEDIA FEED *******/
+
+.icon {
+  color: $primary-accent;
+}
+
+.main-container {
+  position: relative;
+}
+
+.post-container {
+  @include flexbox(column, null, null);
+}
+
+.post {
+  background-color: white;
+  margin-bottom: 1em;
+  padding: 2em 1.5em;
+  transition: background-color 1.5s ease;
+}
+
+.post-image {
+  width: 100%;
+  padding-bottom: 0.75em;
+}
+
+.text-container {
+  @include flexbox(column, null, null);
+}
+
+.post-date {
+  padding-bottom: 0.5em;
+  font-size: 1.15em;
+
+  h3 {
+    font-weight: bold;
+  }
+}
+
+.post-description {
+  font-weight: initial;
+  font-size: 0.9em;
+  padding-bottom: 0.75em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/******* CREATE NEW MEMO MENU *******/
+
+.create-menu {
+  @include flexbox(column, null, null);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  transform: translateY(130%);
+  transition: transform 0.4s ease, visibility 0.4s ease;
+  visibility: hidden;
+  overflow-y: scroll;
+
+  &.active {
+    transform: translateY(0px);
+    transition: transform 0.5s ease, visibility 0.5s ease;
+    visibility: visible;
+  }
+}
+
+.create-nav {
+  display: grid;
+  grid-template-columns: 70px auto 70px;
+
+  min-height: 65px;
+  padding-top: 0.75em;
+  background-color: $primary-color;
+  border-bottom: 3px solid $primary-accent;
+
+  position: relative;
+
+  h1 {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    font-size: 1.25em;
+    font-weight: 100;
+  }
+}
+
+.close-button-container {
+  display: grid;
+}
+
+.close-menu-button {
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+  color: $primary-accent;
+  font-size: 18px !important;
+  font-weight: bold;
+
+  &:hover {
+    color: $primary-accent-hover;
+  }
+}
+
+.content-container {
+  @include flexbox(column, null, null);
+  padding: 2em 1.5em;
+  height: 100%;
+}
+
+.wrapper {
+  position: relative;
+  height: calc(100% - 65px);
+}
+
+/******* IMAGE WITHIN MENU *******/
+
+.image-container {
+  height: 100%;
+  min-height: 200px;
+  max-height: 350px;
+  position: relative;
+  z-index: 0;
+
+  p {
+    font-weight: 400;
+    padding: 0.15em;
+  }
+
+  input {
+    background-color: gray;
+    opacity: 0;
+    position: inherit;
+    z-index: 0;
+  }
+}
+
+.select-image-icon {
+  @include flexbox(column, center, center);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+
+  &:hover {
+    background-color: #e5e5e5;
+  }
+}
+
+.image-icon {
+  color: $primary-font;
+  font-size: 50px !important;
+}
+
+#selected-image {
+  position: absolute;
+  object-fit: cover;
+  background-color: #303030;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  visibility: hidden;
+}
+
+.close-image-button {
+  color: $primary-accent;
+  background-color: $primary-color;
+  border-bottom: 2px solid $primary-accent;
+  padding: 0 0.25em 0.1em 0.25em;
+  visibility: hidden;
+  font-size: 18px;
+  font-weight: bold;
+
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 3;
+
+  &:hover {
+    transform: translateY(2px);
+  }
+}
+
+.clear-image-overlay {
+  cursor: pointer;
+  @include flexbox(column, center, center);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.1s ease;
+
+  .clear-image-text {
+    font-weight: bold;
+    font-size: 1.25em;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+  }
+
+  button {
+    font-size: 28px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .clear-image-text,
+    button {
+      opacity: 1;
+    }
+  }
+}
+
+/******* REST OF CREATION MENU *******/
+
+.create-date {
+  display: grid;
+  font-weight: 400;
+  font-size: 0.95em;
+  margin: 1em 0;
+
+  h2 {
+    margin: 0;
+    justify-self: center;
+    font-size: 0.9em;
+    font-weight: 400;
+  }
+}
+
+textarea {
+  padding: 0;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+
+  resize: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  min-height: 75px;
+  max-height: 300px;
+  margin-bottom: 1em;
+
+  font-family: $lato;
+  font-size: 0.9em;
+  caret-color: $primary-accent;
+}
+
+.post-memo-button {
+  border-bottom: 3px solid $primary-accent;
+  background-color: $primary-color;
+  color: $primary-accent;
+  padding: 0.65em 0;
+  width: 100%;
+  font-family: $passion;
+  font-size: 1.15em;
+
+  &:hover {
+    transform: translateY(3px);
+  }
+
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+    background-color: #777777;
+    color: #e5e5e5;
+    border-bottom: 3px solid #e5e5e5;
+  }
+}
+
+/****** WARNING CONTAINER ******/
+
+.warning-container {
+  @include flexbox(column, center, center);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+
+  &.active {
+    visibility: visible;
+  }
+}
+
+.warning-popup {
+  @include flexbox(column, null, center);
+  background-color: white;
+  width: 60%;
+  padding: 2em;
+
+  h3 {
+    margin: 0;
+    padding-bottom: 0.5em;
+  }
+
+  span {
+    padding-bottom: 1em;
+  }
+
+  .button-container {
+    display: flex;
+  }
+
+  button {
+    font-size: 0.75em;
+    font-weight: bold;
+    margin: 0 0.25em;
+    padding: 0.5em;
+    min-width: 75px;
+    border-bottom: 3px solid $primary-accent;
+
+    &:hover {
+      transform: translateY(3px);
+    }
+
+    &.warning-button {
+      background-color: $primary-color;
+      color: $primary-accent;
+    }
+    &.cancel-button {
+      background-color: #eeeeee;
+    }
+  }
+}
+
+.warning-text {
+  text-align: center;
+}
+
+@keyframes pulseBg {
+  0% {
+    background-color: white;
+  }
+
+  50% {
+    background-color: $primary-accent;
+  }
+
+  100% {
+    background-color: white;
+  }
+}

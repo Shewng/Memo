@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Memo | Share Your Memos to the World</title>
+        <meta name="description" content="Homepage of Memo">
+        <meta name="author" content="Shwong">
+
+        <link href="style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Passion+One&display=swap" rel="stylesheet"> 
+
+    </head>
+
+    <body>
+        <div class="main-container">
+            <nav id="nav">
+                <img src="assets/menu.png" class="icon"/>
+                <img src="assets/logo.png" class="logo" alt="Memo"/>
+                <span class="icon material-icons">account_box</span>
+            </nav>
+
+            <div class="post-container">
+            <div class="post">
+                <img src="assets/pic1.jpg" class="post-image">
+                <div class="text-container">
+                    <div class="post-date">July 3, 2021</div>
+                    <p class="post-description">Samantha wanted to be famous. The problem was that she had never considered all the downsides to actually being famous. Had she taken the time to objectively consider these downsides, she would have never agreed to publically sing that first song.</p>
+                </div>
+            </div>
+            <div class="post">
+                <img src="assets/pic2.png" class="post-image">
+                <div class="text-container">
+                    <div class="post-date">February 18, 2019</div>
+                </div>
+            </div>
+            <div class="post">
+                    <div class="text-container">
+                        <div class="post-date">August 29, 2017</div>
+                        <p class="post-description">Was it enough? That was the question he kept asking himself. Was being satisfied enough? He looked around him at everyone yearning to just be satisfied in their daily life and he had reached that goal. He knew that he was satisfied and he also knew it wasn't going to be enough.</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer id="footer">
+                <div class="button-container">
+                    <img src="assets/post.png" class="create-memo-button" />
+                    <span class="post-header">NEW</span>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="create-menu" class="create-menu hidden">
+            <div class="create-nav">
+                <div class="close-button-container">
+                    <span class="icon material-icons close-menu-button">arrow_back_ios</span>
+                </div>
+                <h1>Create New Memo</h1>
+            </div>
+            <div class="content-container">
+                <div class="image-container">
+                    <label for="upload-image-input">
+                        <input id="upload-image-input" class="test" type="file" accept="image/*">
+                        <div class="select-image-icon">
+                            <span class="icon material-icons image-icon">image</span>
+                            <p>Select Image</p>
+                        </div>
+                    </label>
+                    <img id="selected-image" src=""/>
+                    <button class="close-button close-image-button">&times;</button>
+                </div>
+                <div class="create-date"></div>
+                <hr>
+                <label for="create-description"></label>
+                <textarea id="create-description" type="text" placeholder="Describe your memo here..." rows="10" column="100"></textarea>
+                <hr>
+                
+                <button id="post-memo-button" class="post-memo-button disabled">Post Memo</button>
+            </div>
+            <div id="warning-container" class="warning-container">
+                <div class="warning-popup">
+                    <h3>Close Menu</h3>
+                    <span class="warning-text">Are you sure you want to discard your Memo?</span>
+                    <div class="button-container">
+                        <button class="warning-button">Yes</button>
+                        <button class="cancel-button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script src="script.js" type="text/javascript"></script>
+    </body>
+
+
+
+</html>
